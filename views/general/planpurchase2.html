@@ -1,0 +1,181 @@
+<style>
+
+    .hidepaybutton{
+        display: none !important;
+    }
+
+    .showpaybutton{
+        display: block !important;
+    }
+    
+</style>
+
+<style>
+    .pricing-form {
+        max-width: 500px;
+        margin: auto;
+    }
+
+    .pricing-card:hover .border {
+        border-color: #696cff !important;
+    }
+
+    .popular-badge {
+        position: absolute;
+        top: 0;
+        right: 0;
+        background: #696cff;
+        color: white;
+        font-size: 0.75rem;
+        padding: 2px 8px;
+        border-bottom-left-radius: 0.375rem;
+    }
+
+    .option-details {
+        max-width: 70%;
+    }
+</style>
+
+<div class="modal-body">
+    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+    <!-- Pricing Plans -->
+    <div class="rounded-top">
+        <h2 class="text-center mb-2 mt-0 mt-md-4" >Find the right plan for your workloads</h2>
+        <p class="text-center pb-3" >
+            Start your journey with us—pick a token plan that fits your needs perfectly.
+        </p>
+
+
+        
+        
+        <div class="row mx-0 gy-3">
+
+        
+
+
+            
+            <!-- Basic -->
+            <div class="col-lg mb-md-0 mb-4">
+                <div class="card border rounded shadow-none">
+                    <div class="card-body position-relative">
+                        <h3 class="card-title fw-semibold text-center text-capitalize mb-1">Basic</h3>
+                        <p class="text-center">A simple start for everyone</p>
+                        <div class="text-center mb-5">
+                            <div class="d-flex justify-content-center mb-1">
+                                <sup class="h5 pricing-currency mt-3 mb-0 me-1 text-primary">INR</sup>
+                                <h1 class="fw-bold h1 mb-0 text-primary">500</h1>
+                            </div>
+                        </div>
+
+                        <ul class="ps-3 my-4 list-unstyled">
+                            <li class="mb-2">
+                                    <span class="badge badge-center w-px-20 h-px-20 rounded-pill bg-label-primary me-2"
+                                    ><i class="bx bx-check bx-xs"></i
+                                    ></span>
+                                100000 tokens
+                            </li>
+                            <li class="mb-2">
+                                    <span class="badge badge-center w-px-20 h-px-20 rounded-pill bg-label-primary me-2"
+                                    ><i class="bx bx-check bx-xs"></i
+                                    ></span>
+                                Approximately 50 queries.
+                            </li>
+                        </ul>
+
+                        <button id="btn-buy-basic" class="btn btn-primary d-grid w-100" onclick="BuyToken('basic')">Buy</button>
+                        <button id="btn-buy-basic-load" class="btn btn-primary w-100 hidepaybutton" type="button" disabled="" >
+                            <span class="spinner-grow me-1" role="status" aria-hidden="true"></span>
+                            Loading...
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Pro -->
+            <div class="col-lg mb-md-0 mb-4">
+                <div class="card border-primary border shadow-none">
+                    <div class="card-body position-relative">
+                        <h3 class="card-title fw-semibold text-center text-capitalize mb-1">Pro</h3>
+                        <p class="text-center">For medium workloads</p>
+                        <div class="text-center mb-5">
+                            <div class="mb-1 d-flex justify-content-center">
+                                <sup class="h5 pricing-currency mt-3 mb-0 me-1 text-primary">INR</sup>
+                                <h1 class="price-toggle price-yearly fw-bold h1 mb-0 text-primary">1500</h1>
+                                <h1 class="price-toggle price-monthly fw-bold h1 mb-0 d-none text-primary">49</h1>
+                            </div>
+                        </div>
+
+                        <ul class="ps-3 my-4 list-unstyled">
+                            <li class="mb-2">
+                                    <span class="badge badge-center w-px-20 h-px-20 rounded-pill bg-label-primary me-2"
+                                    ><i class="bx bx-check bx-xs"></i
+                                    ></span>
+                                400000 tokens
+                            </li>
+                            <li class="mb-2">
+                                    <span class="badge badge-center w-px-20 h-px-20 rounded-pill bg-label-primary me-2"
+                                    ><i class="bx bx-check bx-xs"></i
+                                    ></span>
+                                Approximately 150 queries.
+                            </li>
+                        </ul>
+
+                        <button id="btn-buy-pro" class="btn btn-primary d-grid w-100" onclick="BuyToken('pro')">Buy</button>
+                        <button id="btn-buy-pro-load" class="btn btn-primary w-100 hidepaybutton" type="button" disabled="" >
+                            <span class="spinner-grow me-1" role="status" aria-hidden="true"></span>
+                            Loading...
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Enterprise -->
+            <div class="col-lg">
+                <div class="card border rounded shadow-none">
+                    <div class="card-body">
+
+                        <h3 class="card-title text-center text-capitalize fw-semibold mb-1">Enterprise</h3>
+                        <p class="text-center">Solution for heavy workloads</p>
+
+                        <div class="text-center mb-5">
+                            <div class="mb-1 d-flex justify-content-center">
+                                <sup class="h5 pricing-currency mt-3 mb-0 me-1 text-primary">INR</sup>
+                                <h1 class="price-toggle price-yearly fw-bold h1 mb-0 text-primary">2500</h1>
+
+                            </div>
+
+                        </div>
+
+                        <ul class="ps-3 my-4 list-unstyled">
+                            <li class="mb-2">
+                                    <span class="badge badge-center w-px-20 h-px-20 rounded-pill bg-label-primary me-2"
+                                    ><i class="bx bx-check bx-xs"></i
+                                    ></span>
+                                800000 tokens
+                            </li>
+                            <li class="mb-2">
+                                    <span class="badge badge-center w-px-20 h-px-20 rounded-pill bg-label-primary me-2"
+                                    ><i class="bx bx-check bx-xs"></i
+                                    ></span>
+                                Approximately 300 queries.
+                            </li>
+                        </ul>
+
+                        <button id="btn-buy-enterprise" class="btn btn-primary d-grid w-100" onclick="BuyToken('enterprise')">Buy</button>
+                        <button id="btn-buy-enterprise-load" class="btn btn-primary w-100 hidepaybutton" type="button" disabled="">
+                            <span class="spinner-grow me-1" role="status" aria-hidden="true"></span>
+                            Loading...
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+
+
+            
+            
+        </div>
+    </div>
+</div>
+<!--/ Pricing Modal -->
+<script src="views/general/planpurchase.js"></script>

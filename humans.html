@@ -1,0 +1,1181 @@
+<!DOCTYPE html>
+
+<html lang="en" class="layout-navbar-fixed dark-style layout-menu-fixed layout-footer-fixed" dir="ltr"
+      data-theme="theme-default" data-assets-path="theme2/assets/" data-template="vertical-menu-template"
+      xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="utf-8" />
+    <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0"
+    />
+
+    <title>ragenaizer | Inference from your documents</title>
+
+    <meta name="description" content="" />
+
+    <!-- Favicon -->
+    <link rel="icon" href="theme1/assets/images/logo-icon black.png" type="image/svg+xml" />
+
+    <!-- Fonts -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+            href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap"
+            rel="stylesheet"
+    />
+    
+    <!-- Icons -->
+    <link rel="stylesheet" href="theme2/assets/vendor/fonts/boxicons.css" />
+    <link rel="stylesheet" href="theme2/assets/vendor/fonts/fontawesome.css" />
+    <link rel="stylesheet" href="theme2/assets/vendor/fonts/flag-icons.css" />
+
+    <!-- Core CSS -->
+    <link rel="stylesheet" href="theme2/assets/vendor/css/rtl/core-dark.css" />
+    <link rel="stylesheet" href="theme2/assets/vendor/css/rtl/theme-default-dark.css" />
+    <link rel="stylesheet" href="theme2/assets/css/demo.css" />
+  
+    <!-- Vendors CSS -->
+    <link rel="stylesheet" href="theme2/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css" />
+    <link rel="stylesheet" href="theme2/assets/vendor/libs/typeahead-js/typeahead.css" />
+    <link rel="stylesheet" href="theme2/assets/vendor/libs/apex-charts/apex-charts.css" />
+
+    <link rel="stylesheet" href="theme2/assets/vendor/css/pages/app-chat.css">
+    <script src="theme2/assets/vendor/js/helpers.js"></script>
+    <script src="theme2/assets/js/config.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/8.0.7/signalr.min.js" integrity="sha512-7SRCYIJtR6F8ocwW7UxW6wGKqbSyqREDbfCORCbGLatU0iugBLwyOXpzhkPyHIFdBO0K2VCu57fvP2Twgx1o2A==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/d3-cloud@1.2.5/build/d3.layout.cloud.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/face-api.js@0.22.2/dist/face-api.min.js"></script>
+    <!-- Latest version -->
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/pptxgenjs@3.12.0/dist/pptxgen.bundle.js"></script>
+    <link rel="stylesheet" href="systemjs/cs/invoice.css" />
+    <style>
+        .offcanvas-body {
+            height: 100%;
+        }
+
+        #videoContainer {
+            width: 100%;
+        }
+    </style>
+
+
+    <style>
+        .custom-option-basic .custom-option-content {
+            padding: 0.8em;
+            padding-left: 2.7em;
+        }
+
+        .showchat{
+            display: block;
+        }
+
+        .hidechat{
+            display: none !important;
+        }
+
+        .hidesendbutton{
+            display: none !important;
+        }
+
+        .showsendbutton{
+            display: flex !important;
+        }
+
+        .text-xs{
+            font-size: 12px;
+        }
+
+        .text-truncate-35 {
+            max-width: 35ch;          /* Limit width to approximately 50 characters */
+            white-space: nowrap;      /* Keep text on one line */
+            overflow: hidden;         /* Hide overflow */
+            text-overflow: ellipsis;  /* Show ellipsis */
+            display: inline-block;    /* Makes the element respect width */
+        }
+
+        .app-chat-contacts {
+            transition: all 0.3s ease;
+            position: absolute;
+            background: white;
+            z-index: 1000;
+            height: 100%;
+        }
+
+        .app-chat-contacts.hidden {
+            transform: translateX(-100%);
+            display: none;
+        }
+
+
+    </style>
+    
+    <style>
+        .mic-listening {
+            color: #696cff !important;
+            animation: pulse 1.5s infinite;
+        }
+
+        .mic-listening::after {
+            content: '';
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            background-color: #696cff;
+            border-radius: 50%;
+            position: absolute;
+            top: 0;
+            right: 0;
+            animation: pulse 1.5s infinite;
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+                opacity: 1;
+            }
+            50% {
+                transform: scale(1.2);
+                opacity: 0.8;
+            }
+            100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        .speech-to-text {
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .speech-to-text:hover {
+            opacity: 0.8;
+        }
+    </style>
+
+    <style>
+        .message-input {
+            line-height: 1.5;
+            padding: 8px 12px;
+        }
+
+        /* Custom scrollbar styling */
+        .message-input::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .message-input::-webkit-scrollbar-track {
+            background: #2b2c3f;
+            border-radius: 4px;
+        }
+
+        .message-input::-webkit-scrollbar-thumb {
+            background: #6a6cff;
+            border-radius: 4px;
+        }
+
+        .message-input::-webkit-scrollbar-thumb:hover {
+            background: #0056b3;
+        }
+
+        /* Firefox scrollbar styling */
+        .message-input {
+            scrollbar-width: thin;
+            scrollbar-color: #6a6cff #2b2c3f;
+        }
+
+        /* Optional: Adjust the textarea height automatically */
+        .message-input:focus {
+            outline: none;
+            box-shadow: none;
+        }
+    </style>
+
+    <style>
+        .text-content {
+            white-space: normal !important;       /* Forces normal word wrapping */
+            overflow-wrap: break-word !important; /* Allows long words to break */
+            word-wrap: break-word !important;     /* Legacy browsers support */
+            max-width: 90% !important;          /* Ensures content fits container */
+            padding: 10px;                       /* Adds some spacing */
+        }
+
+        /* Ensures line breaks (br tags) still work */
+        .text-content br {
+            display: block;
+            content: "";
+            margin-top: 10px;
+        }
+    </style>
+    <style>
+        /* Enable scrolling for the entire chat history */
+        .chat-history {
+            overflow-y: auto;
+            overflow-x: hidden; /* Prevent horizontal scroll on main chat */
+        }
+
+        /* Table container */
+        .dynamic-table-wrapper {
+            width: 100%;
+            max-width: 100%;
+            /* Enable horizontal scroll for wide tables */
+            overflow-x: auto;
+        }
+
+        /* Card container */
+        .dynamic-table-wrapper .card {
+            width: 100%;
+            min-width: 800px; /* Adjust based on your table's minimum width */
+        }
+
+        /* Table styles */
+        .table {
+            margin-bottom: 0;
+            width: 100%;
+        }
+
+        /* Sticky header */
+        .table thead th {
+            position: sticky;
+            top: 0;
+            background: #696cff;
+            z-index: 1;
+        }
+
+        /* Chat message wrapper */
+        .chat-message-wrapper {
+            width: 100%;
+            /* Ensure content fits */
+            max-width: 100%;
+        }
+
+        /* Chat message content */
+        .chat-message-text {
+            /* Allow horizontal scroll for very wide content */
+            overflow-x: auto;
+        }
+        
+    </style>
+    <style>
+       /* Replace col class with custom widths */
+       .app-chat-contacts {
+           width: 260px; /* Fixed width for contacts sidebar */
+           flex-shrink: 0; /* Prevent shrinking */
+       }
+
+       .app-chat-history {
+           width: calc(100% - 260px); /* Take remaining width */
+           flex-shrink: 0; /* Prevent shrinking */
+       }
+
+       /* Ensure container has proper layout */
+       .app-chat .row {
+           display: flex;
+           flex-wrap: nowrap; /* Prevent wrapping */
+           width:  100%;
+       }
+
+       /* Handle table overflow */
+       .chat-message-wrapper {
+           overflow-x: auto;
+           max-width: 100%;
+       }
+
+       .table-responsive {
+           overflow: auto;
+           max-width: 100%;
+       }
+   </style>
+   <style>
+        /* Replace col class with custom widths */
+        .app-chat-contacts {
+            width: 260px; /* Fixed width for contacts sidebar */
+            flex-shrink: 0; /* Prevent shrinking */
+        }
+
+        .app-chat-history {
+            width: calc(100% - 260px); /* Take remaining width */
+            flex-shrink: 0; /* Prevent shrinking */
+        }
+
+        /* Ensure container has proper layout */
+        .app-chat .row {
+            display: flex;
+            flex-wrap: nowrap; /* Prevent wrapping */
+            width: 100%;
+        }
+
+        /* Handle table overflow */
+        .chat-message-wrapper {
+            overflow-x: auto;
+            max-width: 100%;
+        }
+
+        .table-responsive {
+            overflow: auto;
+            max-width: 100%;
+        }
+
+        /* Responsive behavior */
+        @media (max-width: 992px) {
+            .app-chat-contacts {
+                position: absolute;
+                left: 0;
+                z-index: 3;
+                width: 260px;
+                transform: translateX(-100%);
+                transition: transform 0.25s ease;
+            }
+
+            .app-chat-contacts:not(.hidden) {
+                transform: translateX(0);
+            }
+
+            .app-chat-history {
+                width: 100%; /* Take full width when sidebar is hidden/absolute */
+            }
+        }
+
+        /* When contacts explicitly hidden */
+        .app-chat-contacts.hidden + .app-chat-history {
+            width: 100%;
+        }
+    </style>
+   <style>
+       /* Generic responsive width class */
+       .responsive-width {
+           width: calc(100% - 115px); /* Default width calculation */
+           margin-left: auto;
+           margin-right: auto;
+           transition: width 0.3s ease; /* Smooth width changes */
+       }
+
+       /* Responsive breakpoints */
+       @media (max-width: 1200px) {
+           .responsive-width {
+               width: calc(100% - 115px); /* Slightly smaller offset for medium screens */
+           }
+       }
+
+       @media (max-width: 992px) {
+           .responsive-width {
+               width: calc(100% - 50px);
+           }
+       }
+
+       @media (max-width: 768px) {
+           .responsive-width {
+               width: calc(100% - 50px);
+           }
+       }
+
+       @media (max-width: 576px) {
+           .responsive-width {
+               width: calc(100% - 40px);
+           }
+       }
+   </style>
+   <style>
+        /* Generic responsive width class */
+        .headerchat-width {
+            width: calc(100% - 70px); /* Default width calculation */
+           
+        }
+
+        /* Responsive breakpoints */
+        @media (max-width: 1200px) {
+            .headerchat-width {
+                width: calc(100% - 70px); /* Slightly smaller offset for medium screens */
+            }
+        }
+
+        @media (max-width: 992px) {
+            .headerchat-width {
+                width: calc(100% - 0px);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .headerchat-width {
+                width: calc(100% - 0px);
+            }
+        }
+
+        @media (max-width: 576px) {
+            .headerchat-width {
+                width: calc(100% - 0px);
+            }
+        }
+    </style>
+   <style>
+        /* Generic responsive width class */
+        .airesponsive-width {
+            width: calc(100% - 115px); /* Default width calculation */
+            margin-left: 20px;
+            margin-right: auto;
+            transition: width 0.3s ease; /* Smooth width changes */
+        }
+
+        /* Responsive breakpoints */
+        @media (max-width: 1200px) {
+            .airesponsive-width {
+                width: calc(100% - 115px); /* Slightly smaller offset for medium screens */
+            }
+        }
+
+        @media (max-width: 992px) {
+            .airesponsive-width {
+                width: calc(100% - 50px);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .airesponsive-width {
+                width: calc(100% - 50px);
+            }
+        }
+
+        @media (max-width: 576px) {
+            .airesponsive-width {
+                width: calc(100% - 40px);
+            }
+        }
+    </style>
+    <style>
+        /* Enhanced scrollbar styling */
+        .table-responsive {
+            overflow: auto;
+            max-width: 100%;
+            /* Custom scrollbar styling */
+            scrollbar-width: thin; /* For Firefox */
+            scrollbar-color: #3b3c9b #2b2c40 /* For Firefox: handle color track color */
+        }
+
+        /* Webkit scrollbar styling (Chrome, Safari, Edge) */
+        .table-responsive::-webkit-scrollbar {
+            width: 8px;  /* Vertical scrollbar width */
+            height: 8px; /* Horizontal scrollbar height */
+        }
+
+        .table-responsive::-webkit-scrollbar-track {
+            background: #2b2c40; /* Red track */
+            border-radius: 4px;
+        }
+
+        .table-responsive::-webkit-scrollbar-thumb {
+            background: #3b3c9b; /* Blue handle */
+            border-radius: 4px;
+            border: 2px solid transparent; /* Creates padding effect */
+            background-clip: padding-box;
+        }
+
+        /* Hover effect on the scroll handle */
+        .table-responsive::-webkit-scrollbar-thumb:hover {
+            background: #4f50e9; /* Slightly darker blue on hover */
+            border: 2px solid transparent;
+            background-clip: padding-box;
+        }
+    </style>
+    <style>
+        .text-ragx {
+            --bs-text-opacity: 1;
+            color: rgb(35 142 243) !important;
+        }
+    </style>
+
+    <style>
+        /* Skills hover styles - scoped with table ID */
+        #job-postings-table {
+            font-size: 14px; /* Base font size for the entire table */
+        }
+
+        #job-postings-table .table-status,
+        #job-postings-table th,
+        #job-postings-table td,
+        #job-postings-table .btn,
+        #job-postings-table .badge,
+        #job-postings-table .skills-popup,
+        #job-postings-table .skills-summary {
+            font-size: 12px; /* Ensure consistent font size across all elements */
+        }
+
+        #job-postings-table .skills-container {
+            position: relative;
+            cursor: pointer;
+        }
+
+        #job-postings-table .skills-summary {
+            display: inline-block;
+            padding: 4px 8px;
+            background-color: #e9ecef;
+            border-radius: 4px;
+            color: #212529; /* Darker text for better contrast */
+            font-weight: 500; /* Medium weight for better readability */
+        }
+
+        #job-postings-table .skills-popup {
+            display: none;
+            position: fixed;
+            z-index: 1050;
+            width: 250px;
+            padding: 10px;
+            background-color: #4f505cf2;
+            border: 1px solid #3a4550;
+            border-radius: 4px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+            color: #212529;
+        }
+
+        #job-postings-table .skills-container:hover .skills-popup {
+            display: block;
+        }
+
+        /* Badge styles for skills */
+        #job-postings-table .badge {
+            display: inline-block;
+            padding: 0.35em 0.65em;
+            font-weight: 700;
+            line-height: 1;
+            text-align: center;
+            white-space: nowrap;
+            vertical-align: baseline;
+            border-radius: 0.25rem;
+        }
+
+        #job-postings-table .badge-info {
+            color: #fff;
+            background-color: #0dcaf0;
+        }
+
+        #job-postings-table .badge-warning {
+            color: #000;
+            background-color: #ffc107;
+        }
+
+        #job-postings-table .badge-success {
+            color: #fff;
+            background-color: #198754;
+        }
+
+        /* JavaScript will position this popup dynamically */
+
+
+        #job-postings-table .skills-container:hover .skills-popup {
+            display: block;
+        }
+
+        #job-postings-table .skills-popup div {
+            margin-bottom: 5px;
+        }
+
+        /* Make sure headers inside popup are clearly visible */
+        #job-postings-table .skills-popup strong {
+            color: #000; /* Black text for headers */
+        }
+
+        /* Badge styles for skills */
+        #job-postings-table .badge {
+            display: inline-block;
+            padding: 0.35em 0.65em;
+            font-size: 0.75em;
+            font-weight: 700;
+            line-height: 1;
+            text-align: center;
+            white-space: nowrap;
+            vertical-align: baseline;
+            border-radius: 0.25rem;
+        }
+
+        #job-postings-table .badge-info {
+            color: #fff;
+            background-color: #0dcaf0;
+        }
+
+        #job-postings-table .badge-warning {
+            color: #000;
+            background-color: #ffc107;
+        }
+
+        /* Search styling */
+        .search-container {
+            min-width: 250px;
+            max-width: 350px;
+        }
+
+        .card-header .input-group {
+            width: 100%;
+        }
+
+        .table-status {
+            font-size: 14px;
+            color: #6c757d;
+        }
+
+        /* Highlight matching text */
+        .highlight {
+            background-color: #fff3cd;
+            padding: 2px;
+        }
+        
+    </style>
+    
+</head>
+
+<body>
+<!-- Layout wrapper -->
+<div class="layout-wrapper layout-content-navbar">
+        <div class="layout-container">
+        <!-- Menu -->
+
+        <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
+            <div class="app-brand demo p-3">
+                <a href="index.html" class="app-brand-link">
+                  <span class="app-brand-logo demo">
+                     <img src="theme2/assets/logo/logo-icon-blue.png"  style="width: 45px">
+                  </span>
+                    <span class="app-brand-text demo fw-bolder mb-2 menu-text ms-1">
+                        <img src="theme2/assets/logo/logo-name-blue.png"  style="width: 170px; height: 22px;" >
+                    </span>
+                </a>
+
+                <a href="javascript:void(0);" class="layout-menu-toggle menu-link text-large ms-auto">
+                    <i class="bx bx-chevron-left bx-sm align-middle"></i>
+                </a>
+            </div>
+
+            <div class="menu-inner-shadow"></div>
+
+            <ul class="menu-inner py-1">
+
+                <li class="menu-item active open" style="">
+                    <a href="javascript:void(0);" class="menu-link menu-toggle">
+                        <i class="menu-icon tf-icons bx bx-atom"></i>
+                        <div data-i18n="CoPilot">CoPilot</div>
+                    </a>
+                    <ul class="menu-sub">
+                        <li class="menu-item">
+                            <a href="arena.html?copilot=chat" class="menu-link">
+                                <div data-i18n="Knowledge">Knowledge</div>
+                            </a>
+                        </li>
+                        <li class="menu-item">
+                            <a href="datasense.html?copilot=datasense" class="menu-link" >
+                                <div data-i18n="DataSense">DataSense</div>
+                            </a>
+                        </li>
+
+                        <li class="menu-item active">
+                            <a href="#" class="menu-link">
+                                <div data-i18n="Recruiters">Recruiter</div>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                
+               
+                
+                
+                
+<!--                <li class="menu-item">-->
+<!--                    <a href="javascript:void(0);" class="menu-link menu-toggle">-->
+<!--                        <i class="menu-icon tf-icons bx bx-home-circle"></i>-->
+<!--                        <div data-i18n="Settings">Settings</div>-->
+<!--                    </a>-->
+<!--                    <ul class="menu-sub">-->
+<!--                        <li id="pdf-list">-->
+<!--                            <div id="semantic-control-div">-->
+<!--                                -->
+<!--                            </div>-->
+<!--                        </li>-->
+<!--                    </ul>-->
+<!--                </li>-->
+                <!-- Layouts -->
+                <li class="menu-item">
+                    <a href="javascript:void(0);" class="menu-link menu-toggle">
+                        <i class="menu-icon tf-icons bx bx-layout"></i>
+                        <div data-i18n="Usages">Usages</div>
+                    </a>
+
+                    <ul class="menu-sub">
+                        <li class="menu-item">
+                            <div id="usages-control-div">
+
+                            </div>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </aside>
+        <!-- / Menu -->
+
+        <!-- Layout container -->
+        <div class="layout-page">
+            <!-- Navbar -->
+
+            <nav
+                    class="layout-navbar  navbar navbar-expand-xl navbar-detached align-items-center bg-navbar-theme"
+                    id="layout-navbar"
+            >
+                <div class="layout-menu-toggle navbar-nav align-items-xl-center me-3 me-xl-0 d-xl-none">
+                    <a class="nav-item nav-link px-0 me-xl-4" href="javascript:void(0)">
+                        <i class="bx bx-menu bx-sm"></i>
+                    </a>
+                </div>
+
+                <div class="navbar-nav-right d-flex align-items-center" id="navbar-collapse">
+
+                    <span class="text-dark text-uppercase">Recruiter CoPilot</span>
+                    
+                    <ul class="navbar-nav flex-row align-items-center ms-auto">
+
+                        <!-- Style Switcher -->
+                        <li class="nav-item me-2 me-xl-0">
+                            <a class="nav-link style-switcher-toggle hide-arrow" href="javascript:void(0);">
+                                <i class="bx bx-sm"></i>
+                            </a>
+                        </li>
+                        <!--/ Style Switcher -->
+
+
+<!--                        <li class="nav-item dropdown-language dropdown me-2 me-xl-0">-->
+<!--                            <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);" data-bs-toggle="dropdown" aria-expanded="false">-->
+<!--                                &lt;!&ndash; Job Posts Main Icon - Blue &ndash;&gt;-->
+<!--                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#2196f3" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-briefcase">-->
+<!--                                    <rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect>-->
+<!--                                    <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>-->
+<!--                                </svg>-->
+<!--                            </a>-->
+<!--                            <ul class="dropdown-menu dropdown-menu-end">-->
+<!--                                <li>-->
+<!--                                    <a class="dropdown-item" href="javascript:void(0);" onclick="ShowJobPostingModal()">-->
+<!--                                        &lt;!&ndash; Post A Job Icon - Green &ndash;&gt;-->
+<!--                                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#4caf50" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-plus me-1">-->
+<!--                                            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>-->
+<!--                                            <polyline points="14 2 14 8 20 8"></polyline>-->
+<!--                                            <line x1="12" y1="18" x2="12" y2="12"></line>-->
+<!--                                            <line x1="9" y1="15" x2="15" y2="15"></line>-->
+<!--                                        </svg>-->
+<!--                                        <span class="align-middle">Post A Job</span>-->
+<!--                                    </a>-->
+<!--                                </li>-->
+<!--                                <li>-->
+<!--                                    <a class="dropdown-item" href="javascript:void(0);" onclick="GetMyjobpostings()">-->
+<!--                                        &lt;!&ndash; My Job Postings Icon - Purple &ndash;&gt;-->
+<!--                                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#9c27b0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-clipboard me-1">-->
+<!--                                            <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path>-->
+<!--                                            <rect x="8" y="2" width="8" height="4" rx="1" ry="1"></rect>-->
+<!--                                        </svg>-->
+<!--                                        <span class="align-middle">My Job Postings</span>-->
+<!--                                    </a>-->
+<!--                                </li>-->
+<!--                                <li>-->
+<!--                                    <hr class="dropdown-divider">-->
+<!--                                </li>-->
+<!--                                <li>-->
+<!--                                    <a class="dropdown-item" href="javascript:void(0);" onclick="ShowResumeUploadModal('uploads')">-->
+<!--                                        &lt;!&ndash; Upload Resume Icon - Orange &ndash;&gt;-->
+<!--                                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#ff9800" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-upload me-1">-->
+<!--                                            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>-->
+<!--                                            <polyline points="17 8 12 3 7 8"></polyline>-->
+<!--                                            <line x1="12" y1="3" x2="12" y2="15"></line>-->
+<!--                                        </svg>-->
+<!--                                        <span class="align-middle">Upload Resume</span>-->
+<!--                                    </a>-->
+<!--                                </li>-->
+<!--                                <li>-->
+<!--                                    <a class="dropdown-item" href="javascript:void(0);" onclick="GetCandidateResume()()">-->
+<!--                                        &lt;!&ndash; Show My Resume Icon - Teal &ndash;&gt;-->
+<!--                                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#009688" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text me-1">-->
+<!--                                            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>-->
+<!--                                            <polyline points="14 2 14 8 20 8"></polyline>-->
+<!--                                            <line x1="16" y1="13" x2="8" y2="13"></line>-->
+<!--                                            <line x1="16" y1="17" x2="8" y2="17"></line>-->
+<!--                                            <polyline points="10 9 9 9 8 9"></polyline>-->
+<!--                                        </svg>-->
+<!--                                        <span class="align-middle">Show My Resume</span>-->
+<!--                                    </a>-->
+<!--                                </li>-->
+<!--                                <li>-->
+<!--                                    <hr class="dropdown-divider">-->
+<!--                                </li>-->
+<!--                                <li>-->
+<!--                                    <a class="dropdown-item" href="javascript:void(0);" onclick="GetAllJobPostings()">-->
+<!--                                        &lt;!&ndash; Search Jobs Icon - Red &ndash;&gt;-->
+<!--                                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#f44336" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-search me-1">-->
+<!--                                            <circle cx="11" cy="11" r="8"></circle>-->
+<!--                                            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>-->
+<!--                                        </svg>-->
+<!--                                        <span class="align-middle">Job Search</span>-->
+<!--                                    </a>-->
+<!--                                </li>-->
+<!--                            </ul>-->
+<!--                        </li>-->
+<!--                        -->
+                        
+
+                        <!-- Quick links  -->
+                       
+                        <!-- Quick links -->
+                        
+                        
+                        
+                        
+                        <!-- User -->
+                        <li class="nav-item navbar-dropdown dropdown-user dropdown">
+                            <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);" data-bs-toggle="dropdown">
+                                <div class="avatar " id="signal-connection-1">
+                                    <span class="avatar-initial rounded-circle bg-primary" id="user-initials-span"></span>
+                                </div>
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-end" id="user-initials-dropdown">
+<!--                                <li>-->
+<!--                                    <a class="dropdown-item" href="pages-account-settings-account.html">-->
+<!--                                        <div class="d-flex">-->
+<!--                                            <div class="flex-shrink-0 me-3">-->
+<!--                                                <div class="avatar " id="signal-connection-2">-->
+<!--                                                    <span class="avatar-initial rounded-circle bg-primary" id="user-initials-span2"></span>-->
+<!--                                                </div>-->
+<!--                                            </div>-->
+<!--                                            <div class="flex-grow-1">-->
+<!--                                                <span class="fw-semibold d-block" id="UserName_Name"></span>-->
+<!--                                                <small class="text-muted" id="UserName_email-id"></small>-->
+<!--                                            </div>-->
+<!--                                        </div>-->
+<!--                                    </a>-->
+<!--                                </li>-->
+<!--                                <li>-->
+<!--                                    <div class="dropdown-divider"></div>-->
+<!--                                </li>-->
+<!--                                <li>-->
+<!--                                    <a class="dropdown-item" href="pages-profile-user.html">-->
+<!--                                        <i class="bx bx-user me-2"></i>-->
+<!--                                        <span class="align-middle">My Team</span>-->
+<!--                                    </a>-->
+<!--                                </li>-->
+<!--                                <li>-->
+<!--                                    <a class="dropdown-item" href="pages-account-settings-account.html">-->
+<!--                                        <i class="bx bx-cog me-2"></i>-->
+<!--                                        <span class="align-middle">Add Subuser</span>-->
+<!--                                    </a>-->
+<!--                                </li>-->
+<!--                                <li>-->
+<!--                                    <div class="dropdown-divider"></div>-->
+<!--                                </li>-->
+<!--                                <li>-->
+<!--                                    <a class="dropdown-item" href="pages-account-settings-account.html">-->
+<!--                                        <i class="bx bx-cog me-2"></i>-->
+<!--                                        <span class="align-middle">API Key</span>-->
+<!--                                    </a>-->
+<!--                                </li>-->
+<!--                                <li>-->
+<!--                                    <div class="dropdown-divider"></div>-->
+<!--                                </li>-->
+<!--                                <li>-->
+<!--                                    <a class="dropdown-item" href="pages-help-center-landing.html">-->
+<!--                                        <i class="bx bx-support me-2"></i>-->
+<!--                                        <span class="align-middle">Transactions</span>-->
+<!--                                    </a>-->
+<!--                                </li>-->
+<!--                                <li>-->
+<!--                                    <a class="dropdown-item" href="#" onclick="PlanPurchases()">-->
+<!--                                        <i class="bx bx-dollar me-2"></i>-->
+<!--                                        <span class="align-middle">Pricing</span>-->
+<!--                                    </a>-->
+<!--                                </li>-->
+<!--                                <li>-->
+<!--                                    <div class="dropdown-divider"></div>-->
+<!--                                </li>-->
+<!--                                <li>-->
+<!--                                    <a class="dropdown-item" href="#" onclick="LogoutUser()">-->
+<!--                                        <i class="bx bx-power-off me-2"></i>-->
+<!--                                        <span class="align-middle">Log Out</span>-->
+<!--                                    </a>-->
+<!--                                </li>-->
+                            </ul>
+                        </li>
+                        <!--/ User -->
+                    </ul>
+                </div>
+
+            </nav>
+
+            <!-- / Navbar -->
+
+            <!-- Content wrapper -->
+            <div class="content-wrapper">
+                <!-- Content -->
+
+                <div class="container-fluid flex-grow-1 container-p-y">
+                    <div id="smain-container">
+
+                        
+                    </div>
+
+
+                    <div class="col-md">
+                        <div class="card mb-4">
+                            <div class="card-header header-elements">
+                                <span class="me-2">My Job Postings</span>
+
+                                <div class="card-header-elements ms-auto">
+                                    <button type="button" class="btn btn-sm btn-primary" onclick="ShowJobPostingModal()">
+                                        <span class="tf-icon bx bx-plus bx-xs me-1"></span>New Job Posting
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <div class="input-group mb-3">
+                                    <input type="text" id="job-table-search" class="form-control form-control-sm" placeholder="Search jobs..." oninput="SearchJobs()">
+                                    
+                                </div>
+                                <div class="table-responsive">
+                                    <table class="table" id="job-postings-table">
+                                        <thead>
+                                        <tr>
+                                            <th>Job Title</th>
+                                            <th>Company</th>
+                                            <th>Location</th>
+                                            <th>Skills</th>
+                                            <th>Experience</th>
+                                            <th>Salary Range</th>
+                                            <th>Posted On</th>
+                                            <th>Applicants</th>
+                                            <th>Status</th>
+                                            <th>Actions</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+
+                                        </tbody>
+                                    </table>
+                                </div>
+                                
+                            </div>
+                        </div>
+                    </div>
+                    
+                    
+                    
+                    
+                    
+
+                    <div class="offcanvas offcanvas-end" data-bs-scroll="true" tabindex="-1" id="offcanvasRight"
+                         aria-labelledby="offcanvasRightLabel">
+                        <div class="offcanvas-header">
+                            <h5 id="offcanvasRightLabel"><span id="off-canvas-header-right">My Team</span></h5>
+                            <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close" id="offcanvasRight_close"></button>
+                        </div>
+                        <div class="offcanvas-body p-1">
+                            <div id="my-container-right-offcanvas"></div>
+                        </div>
+                    </div>
+                    
+                    <div
+                            class="offcanvas offcanvas-start"
+                            data-bs-scroll="true"
+                            data-bs-backdrop="false"
+                            tabindex="-1"
+                            id="offcanvasBottom"
+                            aria-labelledby="offcanvasBottomLabel"
+                    >
+                        <div class="offcanvas-header py-2">
+                            <h5 id="offcanvasBottomLabel" class="offcanvas-title">Computer Vision AI  </h5>
+                            <button
+                                    type="button"
+                                    class="btn-close text-reset"
+                                    data-bs-dismiss="offcanvas"
+                                    aria-label="Close"
+
+                                    id="offcanvasBottom_close"
+                            ></button>
+                        </div>
+                        <div class="offcanvas-body">
+                            <div class="g-3">
+                                <div id="facetrackandsentiments">
+                                    <div id="videoContainer" class="mb-2" style="height: 250px;">
+                                        <span id="cv_distance" class="position-absolute m-2 mx-3 badge"></span>
+                                        <video
+                                                id="meshVideo"
+                                                autoplay
+                                                playsinline
+                                                class="w-100 h-100 object-fit-cover rounded" style="object-fit: cover;">
+                                        </video>
+                                        <span id="cv_looking" class="position-absolute end-0 m-2 me-5 badge bg-primary"></span>
+                                    </div>
+                                    <div class="h-100">
+
+                                        <div class="card mb-4" style="position: relative; height: calc(100% - 10px);">
+                                            <div class="card-body p-2">
+                                                <h6 class="text-center">Sentiments</h6>
+                                                <div class="">
+
+                                                    <div class="" style="display: flex;align-items: center;" data-sentiment="happy">
+                                                        <div class="text-light small fw-semibold" style="width: 100px;">Happy</div>
+                                                        <div class="progress" style="flex-grow: 1; margin: 0 10px;">
+                                                            <div class="progress-bar progress-bar-striped progress-bar-animated bg-primary" role="progressbar" style="width: 0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+                                                        </div>
+                                                        <div style="width: 50px; text-align: right;" class="text-xs percentage-text">0%</div>
+                                                    </div>
+
+                                                    <div style="display: flex;align-items: center;" data-sentiment="surprised">
+                                                        <div class="text-light small fw-semibold" style="width: 100px;">Surprised</div>
+                                                        <div class="progress" style="flex-grow: 1; margin: 0 10px;">
+                                                            <div class="progress-bar progress-bar-striped progress-bar-animated bg-secondary" role="progressbar" style="width: 0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+                                                        </div>
+                                                        <div style="width: 50px; text-align: right;" class="text-xs percentage-text">0%</div>
+                                                    </div>
+
+                                                    <div style="display: flex;align-items: center;" data-sentiment="sad">
+                                                        <div class="text-light small fw-semibold" style="width: 100px;">Sad</div>
+                                                        <div class="progress" style="flex-grow: 1; margin: 0 10px;">
+                                                            <div class="progress-bar progress-bar-striped progress-bar-animated bg-success" role="progressbar" style="width: 0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+                                                        </div>
+                                                        <div style="width: 50px; text-align: right;" class="text-xs percentage-text">0%</div>
+                                                    </div>
+
+                                                    <div style="display: flex;align-items: center;" data-sentiment="angry">
+                                                        <div class="text-light small fw-semibold" style="width: 100px;">Angry</div>
+                                                        <div class="progress" style="flex-grow: 1; margin: 0 10px;">
+                                                            <div class="progress-bar progress-bar-striped progress-bar-animated bg-danger" role="progressbar" style="width: 0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+                                                        </div>
+                                                        <div style="width: 50px; text-align: right;" class="text-xs percentage-text">0%</div>
+                                                    </div>
+
+                                                    <div style="display: flex;align-items: center;" data-sentiment="fearful">
+                                                        <div class="text-light small fw-semibold" style="width: 100px;">Fearful</div>
+                                                        <div class="progress" style="flex-grow: 1; margin: 0 10px;">
+                                                            <div class="progress-bar progress-bar-striped progress-bar-animated bg-warning" role="progressbar" style="width: 0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+                                                        </div>
+                                                        <div style="width: 50px; text-align: right;" class="text-xs percentage-text">0%</div>
+                                                    </div>
+
+                                                    <div style="display: flex;align-items: center;" data-sentiment="disgusted">
+                                                        <div class="text-light small fw-semibold" style="width: 100px;">Disgusted</div>
+                                                        <div class="progress" style="flex-grow: 1; margin: 0 10px;">
+                                                            <div class="progress-bar progress-bar-striped progress-bar-animated bg-info" role="progressbar" style="width: 0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+                                                        </div>
+                                                        <div style="width: 50px; text-align: right;" class="text-xs percentage-text">0%</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+                                    </div>
+                                </div>
+                                
+                                <div id="in-call-transcription" class="">
+                                    <div class="card">
+                                        <div class="card-body p-2">
+                                            <h6 class="text-center">Live Transcription</h6>
+                                            <ul id="cv-teanscriptions" class="list-unstyled">
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            
+                            
+                        </div>
+                    </div>
+                    
+                    
+                </div>
+                <!-- / Content -->
+
+                <!-- Footer -->
+                <footer class="content-footer footer bg-footer-theme">
+                    <div class="container-fluid d-flex flex-wrap justify-content-between py-2 flex-md-row flex-column">
+
+                        <div id="footer-status-bar" class="d-flex">
+                        </div>
+                        
+                        
+                        <div class="mb-2 mb-md-0">
+                            <div class="d-flex justify-content-between text-xs" style="width: 100%;">
+                                <div>
+                                    <a href="https://hyperscripts.io" target="_blank" class="footer-link text-muted">Ragenaizer can make mistakes. Please double-check responses.</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </footer>
+                <!-- / Footer -->
+
+                <div class="content-backdrop fade"></div>
+            </div>
+            <!-- Content wrapper -->
+        </div>
+        <!-- / Layout page -->
+    </div>
+
+    <!-- Overlay -->
+    <div class="layout-overlay layout-menu-toggle"></div>
+
+    <!-- Drag Target Area To SlideIn Menu On Small Screens -->
+    <div class="drag-target"></div>
+    <div id="plan-purchase-div"></div>
+    <div class="overlay" id="loadingOverlay">
+        <div class="loader">
+            <div class="orbit-dot"></div>
+            <div class="orbit-dot"></div>
+            <div class="orbit-dot"></div>
+        </div>
+    </div>
+
+</div>
+<!-- / Layout wrapper -->
+
+<!-- Core JS -->
+<!-- build:js assets/vendor/js/core.js -->
+<!--<script src="theme2/assets/vendor/libs/jquery/jquery.js"></script>-->
+<script src="theme2/assets/vendor/libs/popper/popper.js"></script>
+<script src="theme2/assets/vendor/js/bootstrap.js"></script>
+<script src="theme2/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js"></script>
+<script src="theme2/assets/vendor/libs/hammer/hammer.js"></script>
+<script src="theme2/assets/vendor/libs/i18n/i18n.js"></script>
+<script src="theme2/assets/vendor/libs/typeahead-js/typeahead.js"></script>
+
+<script src="theme2/assets/vendor/js/menu.js"></script>
+<script src="theme2/assets/vendor/libs/bootstrap-maxlength/bootstrap-maxlength.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+<!-- Main JS -->
+<script src="theme2/assets/js/main.js"></script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+<script src="systemjs/js/domain.js?v=6.0.0"></script>
+<script src="systemjs/js/scripting.js?v=5.0.0"></script>
+<script src="systemjs/js/app.js?v=5.0.0"></script>
+<script src="systemjs/js/auth.js?v=5.0.0"></script>
+<script src="systemjs/js/dashboad.js?v=5.0.0"></script>
+
+
+<script src="systemjs/js/webrtc2.js?v=5.0.0"></script>
+<script src="systemjs/js/speachtotextwebrtc.js?v=5.0.0"></script>
+<script src="systemjs/js/faces.js?v=5.0.0"></script>
+<script src="systemjs/js/pptbuilder.js?v=5.0.0"></script>
+
+
+
+
+<script>
+    function loadScript(src) {
+        var script = document.createElement('script');
+        script.src = src + '?v=' + new Date().getTime();
+        document.body.appendChild(script);
+    }
+
+     loadScript('views/chats/chatmodule.js');
+    // loadScript('systemjs/js/scripting.js');
+    // loadScript('systemjs/js/app.js');
+    // loadScript('systemjs/js/auth.js');
+    // loadScript('systemjs/js/dashboad.js');
+</script>
+</body>
+</html>

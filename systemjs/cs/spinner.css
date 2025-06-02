@@ -1,0 +1,109 @@
+/* Full-Screen Overlay */
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(20, 20, 20, 0.9); /* Subtle dark overlay */
+    z-index: 9999;
+    display: none;
+    backdrop-filter: blur(6px); /* Smooth blur effect */
+    -webkit-backdrop-filter: blur(6px); /* Safari Support */
+}
+
+/* Loader Container */
+.loader {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80px; /* Increased size */
+    height: 80px; /* Increased size */
+    border: 6px solid #4C8EF5; /* Adjusted thickness for proportion */
+    border-radius: 50%;
+    animation: pulse 2s infinite, rotate 4s linear infinite;
+}
+
+/* Outer Glowing Ring */
+.loader::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    width: 100%; /* Matches loader size */
+    height: 100%; /* Matches loader size */
+    border: 6px solid rgba(76, 142, 245, 0.5); /* Adjusted thickness */
+    border-radius: 50%;
+    animation: expand-fade 2s infinite;
+}
+
+/* Orbiting Dots */
+.loader .orbit-dot {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 12px; /* Increased size */
+    height: 12px; /* Increased size */
+    background: linear-gradient(45deg, #4C8EF5, #68A7F8);
+    border-radius: 50%;
+    transform-origin: -40px; /* Adjusted orbit radius */
+    animation: orbit 1.5s linear infinite;
+}
+
+.loader .orbit-dot:nth-child(1) {
+    animation-delay: 0s;
+}
+
+.loader .orbit-dot:nth-child(2) {
+    animation-delay: 0.5s;
+}
+
+.loader .orbit-dot:nth-child(3) {
+    animation-delay: 1s;
+}
+
+/* Keyframes for Pulsing */
+@keyframes pulse {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.2);
+    }
+}
+
+/* Keyframes for Expand and Fade */
+@keyframes expand-fade {
+    0% {
+        transform: scale(1);
+        opacity: 1;
+    }
+    100% {
+        transform: scale(1.5);
+        opacity: 0;
+    }
+}
+
+/* Keyframes for Orbit */
+@keyframes orbit {
+    0% {
+        transform: rotate(0deg) translateX(40px); /* Matches orbit radius */
+    }
+    100% {
+        transform: rotate(360deg) translateX(40px); /* Matches orbit radius */
+    }
+}
+
+/* Keyframes for Rotation */
+@keyframes rotate {
+    0% {
+        transform: translate(-50%, -50%) rotate(0deg);
+    }
+    100% {
+        transform: translate(-50%, -50%) rotate(360deg);
+    }
+}

@@ -1,0 +1,42 @@
+<div class="modal-body">
+    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+    <!-- Pricing Plans -->
+    <div class="rounded-top">
+        <h2 class="text-center mb-2 mt-0 mt-md-4"><span id="folder-name-div">Archived Files</span></h2>
+
+        <div class="row mx-0 gy-3">
+            <div class="d-flex align-items-center me-3 me-lg-0">
+
+                <div class="flex-grow-1 input-group input-group-merge rounded-pill ms-1">
+                          <span class="input-group-text" id="basic-addon-search31"
+                          ><i class="bx bx-search fs-4"></i
+                          ></span>
+                    <input
+                            type="text"
+                            class="form-control filearchived-search-input"
+                            placeholder="Search files..."
+                            aria-label="Search files..."
+                            aria-describedby="basic-addon-search31"
+                            oninput="filterArchivedFiles()"
+                    />
+                </div>
+            </div>
+            <hr>
+            <div id="list-of-archived-files-div" class="">
+                <ul class="list-group h-px-350 overflow-auto ps" id="project-archived-files-div">
+                </ul>
+                <hr>
+                <div class="col-12 text-center">
+                    <button id="archivedfile-btn" class="btn btn-primary w-100" onclick="UpdateArchivedFileStatus()">Update</button>
+                    <button id="archivedfile-btn-disabled" class="btn btn-primary w-100" type="button" disabled="" style="display: none;">
+                        <span class="me-1 spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                        Please Wait...
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script src="views/general/archivedfiles.js"></script>

@@ -1,0 +1,153 @@
+<style>
+    .custom-option-basic .custom-option-content {
+        padding: 0.8em;
+        padding-left: 2.7em;
+    }
+
+    .showchat{
+        display: block;
+    }
+
+    .hidechat{
+        display: none !important;
+    }
+
+    .hidesendbutton{
+        display: none !important;
+    }
+
+    .showsendbutton{
+        display: flex !important;
+    }
+    
+    .text-xs{
+        font-size: 12px;
+    }
+
+    .text-truncate-35 {
+        max-width: 35ch;          /* Limit width to approximately 50 characters */
+        white-space: nowrap;      /* Keep text on one line */
+        overflow: hidden;         /* Hide overflow */
+        text-overflow: ellipsis;  /* Show ellipsis */
+        display: inline-block;    /* Makes the element respect width */
+    }
+
+    .app-chat-contacts {
+        transition: all 0.3s ease;
+        position: absolute;
+        background: white;
+        z-index: 1000;
+        height: 100%;
+    }
+
+    .app-chat-contacts.hidden {
+        transform: translateX(-100%);
+        display: none;
+    }
+
+
+</style>
+<link rel="stylesheet" href="theme2/assets/vendor/css/pages/app-chat.css">
+
+
+
+<div class="app-chat overflow-hidden card">
+    <div class="row g-0">
+        
+        <!-- Projrct & Files -->
+        <div class="col-12 col-md order-2 order-md-1 app-chat-contacts app-sidebar flex-grow-0 overflow-hidden border-end" id="app-chat-contacts">
+            <div class="sidebar-header pt-3 px-3 mx-1">
+                <div class="d-flex align-items-center me-3 me-lg-0">
+                    
+                    <div class="flex-grow-1 input-group input-group-merge rounded-pill ms-1">
+                          <span class="input-group-text" id="basic-addon-search31"
+                          ><i class="bx bx-search fs-4"></i
+                          ></span>
+                        <input
+                                type="text"
+                                class="form-control chat-search-input"
+                                placeholder="Search..."
+                                aria-label="Search..."
+                                aria-describedby="basic-addon-search31",
+                                oninput="filterDocs()"
+                        />
+                    </div>
+                    
+                    
+                </div>
+                <i
+                        class="bx bx-x cursor-pointer position-absolute top-0 end-0 mt-2 me-1 fs-4 d-lg-none d-block"
+                        data-overlay
+                        data-bs-toggle="sidebar"
+                        data-target="#app-chat-contacts"
+                ></i>
+            </div>
+
+            <hr class="container-m-nx mb-0 mt-3" />
+            <div class="sidebar-body mb-0 overflow-auto  ps " id="list-of-docs">
+                <ul class="list-unstyled chat-contact-list mb-0" id="contact-list">
+                </ul>
+            </div>
+
+        </div>
+        <!-- Projrct & Files -->
+
+        <!-- Chat History -->
+        <div class="col-12 col-md order-1 order-md-2 app-chat-history" id="app_chat-main-window">
+            <div class="chat-history-wrapper">
+                <div class="chat-history-header border-bottom">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div class="d-flex overflow-hidden align-items-center">
+                            <div class="flex-shrink-0">
+                                <i class="bx bx-menu" data-bs-toggle="sidebar" data-overlay="" data-target="#app-chat-sidebar-right"></i>
+                            </div>
+                            <div class="d-grid px-2 text-center">
+                                <a href="#" class="" onclick="unselectAllCheckboxes()"><span class="text-secondary text-xs" id="total-selected-doc-span"></span></a>
+                            </div>
+                        </div>
+                        <div id="create-new-project-btn">
+                            <button  type="button" class="btn btn-outline-primary" onclick="UploadUserDocumentPrompt(null)">
+                                <span class="tf-icons bx bxs-data me-1"></span>Create New Project
+                            </button>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="chat-history-body mb-0 overflow-auto  ps " id="list-of-chats">
+                    <ul class="list-unstyled chat-history"  style="padding-right: 10px;" id="main-chat-board">
+
+                    </ul>
+                </div>
+                <!-- Chat message form -->
+                <div class="chat-history-footer">
+                    <div class="form-send-message d-flex justify-content-between align-items-center">
+                        <input class="form-control message-input border-0 me-3 shadow-none" placeholder="Type your message here..." id="user-query-input-box">
+                        <div class="message-actions d-flex align-items-center">
+                            <a href="#" class="m-1" id="speach-recog-button" style="display: none"><i class="speech-to-text bx bx-microphone bx-sm cursor-pointer"></i></a>
+                            <button class="btn btn-primary d-flex send-msg-btn showsendbutton" id="send-message-btn">
+                                <i class="bx bx-paper-plane me-md-1 me-0"></i>
+                                <span class="align-middle d-md-inline-block d-none">Send</span>
+                            </button>
+                            <button class="btn btn-primary hidesendbutton" type="button" disabled="" id="send-message-btn-disabled">
+                                <span class="spinner-border me-1" role="status" aria-hidden="true"></span>
+                                Executing...
+                            </button>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+        <!-- Chat History -->
+
+        
+        <div class="app-overlay"></div>
+    </div>
+</div>
+<script src="theme2/assets/vendor/libs/bootstrap-maxlength/bootstrap-maxlength.js"></script>
+<script src="theme2/assets/js/app-chat.js"></script>
+<script>
+    loadScript('views/chats/chatmodule.js');
+</script>
+

@@ -1,0 +1,283 @@
+/* Logo group positioning */
+.slogo-group {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+}
+
+.slogo-group .slogo1 {
+    width: 225px;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.slogo-group .slogo2 {
+    width: 80px;
+    position: absolute;
+    top: 25px;
+    left: 40px;
+}
+
+.slogo-group .slogo3 {
+    width: 140px;
+    position: absolute;
+    top: 96px;
+    left: 13px;
+}
+
+
+.slogo-group .slogo4 {
+    width: 180px;
+    position: absolute;
+    top: 0px;
+    left: 470px;
+}
+
+
+/* Change the logo-group to use relative positioning with flex */
+.logo-group {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    top: 0px;
+    left: 0px;
+    width: calc(100% - 0px);
+}
+
+/* Left side logos container */
+.logo-group .left-logos {
+    position: relative;
+}
+
+.logo-group .logo1 {
+    width: 230px;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.logo-group .logo2 {
+    width: 80px;
+    position: absolute;
+    top: 25px;
+    left: 40px;
+}
+
+.logo-group .logo3 {
+    width: 140px;
+    position: absolute;
+    top: 96px;
+    left: 13px;
+}
+/* Right side logo */
+.logo-group .logo4 {
+    width: 180px;
+    margin-left: auto; /* Push to the right */
+}
+
+/* Positioning for the blogo group */
+.blogo-group {
+    position: absolute;
+    top: 485px;
+    left: 45px;
+}
+
+/* Background Logo */
+.blogo-group .blogo1 {
+    width: 260px;
+    position: absolute;
+    top: 35px;
+    left: 0;
+}
+
+/* Signature Image */
+.blogo-group .blogo2 {
+    width: 150px;
+    position: absolute;
+    top: 55px;
+    left: 0px;
+}
+
+/* Authorized Signatory Text */
+.blogo-group .auth-signatory {
+    white-space: nowrap;
+    position: absolute;
+    top: 135px;
+    left: 20px;
+    font-size: 11px;
+    font-weight: normal;
+    color: #555555;
+    text-align: center;
+}
+
+
+/* Authorized Signatory Text */
+.blogo-group .my-brand {
+    white-space: nowrap;
+    position: absolute;
+    top: 100px;
+    left: 3px;
+    font-size: 11px;
+    font-weight: bold;
+    color: #004aad;
+    text-align: center;
+}
+.blogo-group .my-brand-address {
+    white-space: nowrap;
+    position: absolute;
+    top: 175px;
+    left: 0px;
+    font-size: 10px;
+    font-weight: normal;
+    color: #1d1e1f;
+    text-align: center;
+}
+
+
+
+/* Invoice header with title (INVOICE) */
+.invoice-header {
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+    margin-bottom: 60px;
+    margin-top: 50px; /* to avoid overlap with logos */
+}
+
+.invoice-header h1 {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 45px;
+    font-weight: bold;
+    color: #004aad;
+    margin: 0;
+    text-transform: uppercase;
+    letter-spacing: 5px;
+}
+
+/* Invoice number and date */
+.invoice-info {
+    display: flex;
+    flex-direction: column;
+    font-size: 12px;
+    color: #333333;
+    margin-top: 20px;
+    text-align: right;
+}
+
+.invoice-info p {
+    margin: 2px 0;
+}
+
+/* Customer details section */
+.customer-details {
+    margin-top: 15px;
+    border-top: 2px solid #004aad;
+    padding-top: 20px;
+}
+
+.customer-details h3 {
+    font-size: 18px;
+    color: #333333;
+    margin-bottom: 10px;
+}
+
+/* Customer name in blue, bold, and bigger font size */
+.customer-details p.customer-name {
+    font-size: 15px;
+    color: #004aad;
+    margin: 5px 0;
+    font-weight: bold;
+}
+
+.customer-details p {
+    font-size: 12px;
+    margin: 5px 0;
+    color: #555555;
+}
+
+
+
+/* Total summary section */
+.invoicesummary {
+    margin-top: 30px;
+    font-size: 12px; /* smaller font size for summary labels */
+    border-top: 2px solid #004aad;
+    padding-top: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+.invoicesummary p {
+    margin: 5px 0;
+    text-align: right;
+    font-weight: normal; /* no bold text */
+}
+
+/* Footer styles */
+.invoicefooter {
+    margin-top: 40px;
+    font-size: 12px;
+    text-align: left;
+    color: #555555;
+    padding-top: 20px;
+    border-top: 2px solid #004aad;
+}
+
+.invoicefooter p {
+    margin: 5px 0;
+}
+
+.invoicefooter .bank-details {
+    font-weight: bold;
+    color: #333333;
+}
+
+/* Footer image at bottom right */
+.invoicefooter-image {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    width: 180px;
+    opacity: 0.6;
+}
+
+.invoice-container{
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 40px;
+    position: relative;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+}
+
+/* Footer styles */
+.invoicefooter {
+    margin-top: 40px;
+    font-size: 12px;
+    text-align: left;
+    color: #555555;
+    padding-top: 20px;
+    border-top: 2px solid #004aad;
+}
+
+.invoicefooter p {
+    margin: 5px 0;
+}
+
+.invoicefooter .bank-details {
+    font-weight: bold;
+    color: #333333;
+}
+
+/* Footer image at bottom right */
+.invoicefooter-image {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    width: 180px;
+    opacity: 0.6;
+}

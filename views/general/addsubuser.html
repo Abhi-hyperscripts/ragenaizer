@@ -1,0 +1,105 @@
+<style>
+
+    .hideaddbutton{
+        display: none !important;
+    }
+
+    .showaddbutton{
+        display: block !important;
+    }
+
+</style>
+
+<div class="modal-body">
+    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+    <!-- Pricing Plans -->
+    <div class="rounded-top">
+        <h2 class="text-center mb-2 mt-0 mt-md-4">Add a member to your team</h2>
+        <p class="text-center pb-3">
+            Work together by sharing and collaborating on documents
+        </p>
+
+        <div id="addNewAddressForm" class="row g-3" onsubmit="return false">
+            <div class="col-12">
+                <div class="row">
+                    <div class="col-md mb-md-0 mb-3">
+                        <div class="form-check custom-option custom-option-icon">
+                            <label class="form-check-label custom-option-content">
+                                  <span class="custom-option-body">
+                                    <i class="bx bx-user-plus"></i>
+                                    <span class="custom-option-title">Admin</span>
+                                    <small> Can create, share, modify, execute queries, buy credits, and add sub-users. </small>
+                                  </span>
+                                <input name="customRadioIcon" class="form-check-input subusertype" type="radio" value="" id="ADMIN-USER" checked />
+                            </label>
+                        </div>
+                    </div>
+                    <div class="col-md mb-md-0 mb-3">
+                        <div class="form-check custom-option custom-option-icon">
+                            <label class="form-check-label custom-option-content">
+                                  <span class="custom-option-body">
+                                    <i class="bx bx-user"></i>
+                                    <span class="custom-option-title"> User </span>
+                                    <small> Can only execute queries. </small>
+                                  </span>
+                                <input name="customRadioIcon" class="form-check-input subusertype" type="radio" value="" id="SUB-USER" />
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-md-6">
+                <label class="form-label" for="sbFirstName">First Name</label>
+                <input
+                        type="text"
+                        id="sbFirstName"
+                        name="sbFirstName"
+                        class="form-control req-field"
+                        placeholder="First Name"
+                />
+            </div>
+            <div class="col-12 col-md-6">
+                <label class="form-label" for="sbLastName">Last Name</label>
+                <input
+                        type="text"
+                        id="sbLastName"
+                        name="sbLastName"
+                        class="form-control req-field"
+                        placeholder="Last Name"
+                />
+            </div>
+            <div class="col-12 col-md-6">
+                <label class="form-label" for="sbEmail">Email</label>
+                <input
+                        type="text"
+                        id="sbEmail"
+                        name="sbEmail"
+                        class="form-control req-field"
+                        placeholder="memeber@mucompany.com"
+                />
+            </div>
+            <div class="col-12 col-md-6">
+                <label class="form-label" for="sbPhone">Phone Number</label>
+                <input
+                        type="text"
+                        id="sbPhone"
+                        name="sbPhone"
+                        class="form-control req-field req-numeric"
+                        placeholder="9991234567"
+                />
+            </div>
+        </div>
+        <div class="d-flex justify-content-center mt-3">
+            <button id="btn-addsub-basic" class="btn btn-primary d-grid w-50" onclick="AddMySubUser()">Add Member</button>
+            <button id="btn-addsub-basic-load" class="btn btn-primary w-50 hideaddbutton" type="button" disabled="" >
+                <span class="spinner-grow me-1" role="status" aria-hidden="true"></span>
+                Please Wait...
+            </button>
+        </div>
+        <div class="d-flex justify-content-center mt-1">
+            <span class="text-xs text-center text-danger" id="subuser-validation-error"></span>
+        </div>
+    </div>
+</div>
+
+<script src="views/general/addsubuser.js"></script>

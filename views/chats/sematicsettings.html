@@ -1,0 +1,50 @@
+
+
+<div class="card mb-4 mb-xl-0">
+    <div class="card-body">
+        <div class="card card-body">
+            <label for="semweights" class="form-label">Semantic Weights <span class="badge bg-primary rounded-circle" id="semwtbadge">70</span></label>
+            <input type="range" value="0.7" class="form-range mt-3 mb-3" min="0" max="1" step="0.1" id="semweights" onchange="$('#semwtbadge').text(this.value*100),$('#kwwtbadge').text(100 - this.value*100)" />
+            <label for="semweights" class="form-label">Keyword Weights <span class="badge bg-primary rounded-circle" id="kwwtbadge">30</span></label>
+        </div>
+
+        <div class="card card-body mt-3">
+            <div class="mb-3">
+                <label for="inferencedocs" class="form-label">Top K <span class="badge bg-primary rounded-circle" id="inferbadge">5</span></label>
+                <input type="range" value="5" class="form-range" min="3" max="290" step="1" id="inferencedocs" onchange="$('#inferbadge').text(this.value)">
+            </div>
+            <div style="display: none !important;">
+                <label for="semthreshold" class="form-label">Semantic Accuracy <span class="badge bg-primary rounded-circle" id="semaccuracy">70</span></label>
+                <input type="range" value="0.7" class="form-range" min="0" max="1" step="0.1" id="semthreshold" onchange="$('#semaccuracy').text(this.value*100)">
+            </div>
+        </div>
+
+
+
+        <div class="card card-body mt-3">
+            <label class="switch switch-square">
+                <input type="checkbox" class="switch-input" id="agentic_query_switch" checked>
+                <span class="switch-toggle-slider">
+                              <span class="switch-on"><i class="bx bx-check"></i></span>
+                              <span class="switch-off"><i class="bx bx-x"></i></span>
+                            </span>
+                <span class="switch-label text-xs">Agentic AI</span>
+            </label>
+        </div>
+
+<!--        <div class="card card-body mt-3">-->
+<!--            <label class="switch switch-square">-->
+<!--                <input type="checkbox" class="switch-input" id="tabular_query_switch" onchange="SwitchSendButtonColor()">-->
+<!--                <span class="switch-toggle-slider">-->
+<!--                              <span class="switch-on"><i class="bx bx-check"></i></span>-->
+<!--                              <span class="switch-off"><i class="bx bx-x"></i></span>-->
+<!--                            </span>-->
+<!--                <span class="switch-label text-xs">Analytical Query</span>-->
+<!--            </label>-->
+<!--        </div>-->
+        
+    </div>
+</div>
+
+<script src="views/chats/sematicsettings.js"></script>
+

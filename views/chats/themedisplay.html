@@ -1,0 +1,41 @@
+<style>
+
+    .hideaddbutton{
+        display: none !important;
+    }
+
+    .showaddbutton{
+        display: block !important;
+    }
+
+</style>
+
+<div class="modal-body">
+    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+    <!-- Pricing Plans -->
+    <div class="rounded-top">
+        <h2 class="mb-2 text-center">Themes</h2>
+        <p class="text-center pb-3">
+            <span id="theme-doc-div"></span>
+        </p>
+
+        <div  class="row g-3">
+           <div id="showthemeForm" class="ps h-px-500">
+               
+           </div>
+            
+        </div>
+        <div class="d-flex justify-content-center mt-3">
+            <button id="btn-remtheme-basic" class="btn btn-outline-danger d-grid w-50 btn-sm" onclick="DeleteTheme()">Delete This Theme</button>
+            <button id="btn-remtheme-basic-load" class="btn btn-outline-danger hideaddbutton w-50 btn-sm" type="button" disabled="" >
+                <span class="spinner-grow me-1" role="status" aria-hidden="true"></span>
+                Please Wait...
+            </button>
+        </div>
+        <div class="d-flex justify-content-center mt-1">
+            <span class="text-xs text-center text-danger" id="theme-validation-error"></span>
+        </div>
+    </div>
+</div>
+
+<script src="views/chats/themedisplay.js"></script>

@@ -1,0 +1,34 @@
+div.dt-buttons {
+    position: initial;
+    margin-bottom: -50px !important;
+}
+
+div.dt-container div.dt-search {
+    text-align: right;
+    margin-bottom: 15px !important;
+}
+
+.swal2-container {
+    z-index: 10000;
+}
+
+.modal-xxl{
+    --bs-modal-width: 85vw;
+}
+
+
+.hideanybutton{
+    display: none !important;
+}
+
+.showanybutton{
+    display: block !important;
+}
+
+#offcanvasBottom {
+    z-index: 999999 !important;
+}
+
+
+
+
